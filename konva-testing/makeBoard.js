@@ -1,0 +1,163 @@
+   var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var stage = new Konva.Stage({
+      container: 'container',
+      width: width,
+      height: height
+    });
+
+    var layer = new Konva.Layer();
+
+    
+    var rectDim = [];
+    var lineDim = [];
+    var test = {'x1':width/2 - 100,'y1':height/2 -100,'x2':width/2 + 50,'y2': height/2 + 50};
+    rectDim.push(test);
+    var test = {'x1':width/2 - 150,'y1':height/2 -150,'x2':width/2 + 100,'y2': height/2 + 100};
+    rectDim.push(test);
+    var test = {'x1':width/2 - 200,'y1':height/2 -200,'x2':width/2 + 150,'y2': height/2 + 150};
+    rectDim.push(test);
+
+    var test = {'x1':(rectDim[0].x1+rectDim[0].x2)/2,'y1':rectDim[0].y1,'x2':(rectDim[0].x1+rectDim[0].x2)/2,'y2': rectDim[2].y1};
+    lineDim.push(test);
+    var test = {'x1':rectDim[0].x1,'y1':(rectDim[0].y1+rectDim[0].y2)/2,'x2':rectDim[2].x1,'y2': (rectDim[0].y1+rectDim[0].y2)/2};
+    lineDim.push(test);
+    var test = {'x1':rectDim[0].x2,'y1':(rectDim[0].y1+rectDim[0].y2)/2,'x2':rectDim[2].x2,'y2': (rectDim[0].y1+rectDim[0].y2)/2};
+    lineDim.push(test);
+    var test = {'x1':(rectDim[0].x1+rectDim[0].x2)/2,'y1':rectDim[0].y2,'x2':(rectDim[0].x1+rectDim[0].x2)/2,'y2': rectDim[2].y2};
+    lineDim.push(test);
+
+    for(i=0;i<9;i++)
+    {
+       var circle = new Konva.Circle({
+        x: 0.1*width + i*30,
+        y: 0.4*height + (i%3)*30,
+        radius: height/35,
+        fill: 'green'
+      });
+       layer.add(circle);
+    }
+
+        for(i=0;i<9;i++)
+    {
+       var circle = new Konva.Circle({
+        x: 0.7*width + i*30,
+        y: 0.4*height + (i%3)*30,
+        radius: height/35,
+        fill: 'red'
+      });
+       layer.add(circle);
+    }
+
+
+    var lineArray = [];
+
+    for(i=0;i<4;i++)
+    {
+    var line = new Konva.Line
+      ({
+        points: [lineDim[i].x1, lineDim[i].y1, lineDim[i].x2, lineDim[i].y2],
+        stroke: 'black',
+        strokeWidth: 2,
+        lineCap: 'round',
+        lineJoin: 'round'
+      });
+      lineArray.push(line);
+      layer.add(line);
+    }
+
+
+    var rectArray = [];
+
+    var colorCircle = '#318ce7';
+    var color = '#318ce7';
+
+    for(i=0;i<3;i++)
+    {
+
+      var rect = new Konva.Rect
+      ({
+        x: rectDim[i].x1,
+        y: rectDim[i].y1,
+        width: rectDim[i].x2 - rectDim[i].x1,
+        height: rectDim[i].y2 - rectDim[i].y1,
+        //fill: 'green',
+        stroke: 'black',
+        strokeWidth: 2
+      });
+      rectArray.push(rect);
+      layer.add(rect);
+
+
+
+
+
+       var circle = new Konva.Circle({
+        x: rectDim[i].x1,
+        y: rectDim[i].y1,
+        radius: 6,
+        fill: colorCircle
+      });
+       layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: (rectDim[i].x1+rectDim[i].x2)/2,
+        y: rectDim[i].y1,
+        radius: 6,
+        fill: colorCircle
+      });       
+        layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: (rectDim[i].x1+rectDim[i].x2)/2,
+        y: rectDim[i].y2,
+        radius: 6,
+        fill: colorCircle
+      });
+        layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: rectDim[i].x1,
+        y: (rectDim[i].y1+rectDim[i].y2)/2,
+        radius: 6,
+        fill: colorCircle
+      });
+        layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: rectDim[i].x2,
+        y: (rectDim[i].y1+rectDim[i].y2)/2,
+        radius: 6,
+        fill: colorCircle
+      });
+       layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: rectDim[i].x1,
+        y: rectDim[i].y2,
+        radius: 6,
+        fill: colorCircle
+      });
+       layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: rectDim[i].x2,
+        y: rectDim[i].y1,
+        radius: 6,
+        fill: colorCircle
+      });
+       layer.add(circle);
+        
+        var circle = new Konva.Circle({
+        x: rectDim[i].x2,
+        y: rectDim[i].y2,
+        radius: 6,
+        fill: colorCircle
+      });
+       layer.add(circle);
+    }
+ 
+
+    stage.add(layer);
+ 
