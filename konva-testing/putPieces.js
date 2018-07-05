@@ -63,16 +63,4 @@
       stage.add(layer);
     };
 
-    imageObj.src = '/NMM/konva-testing/assets/chalk.png';
-
-    stage.on('click', function(e) {
-        var node = e.target;
-        var isCircle = (node.className === 'Circle'); 
-        if (isCircle) 
-        {
-            var nodeID = node.id();
-            var xCoord = boardPoints[nodeID[1]][nodeID[0]].x;
-            var yCoord = boardPoints[nodeID[1]][nodeID[0]].y;
-            move(p1Pieces[0],xCoord,yCoord);              
-        }
-    });
+    imageObj.src = '/home/gaurav/Nine/konva-testing/assets/chalk.png';
