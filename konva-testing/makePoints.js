@@ -17,9 +17,12 @@
       }
       boardPoints.push(points);
     }
-
+    var boardCircles=[];
+    var boardStatus=[];
     for(i=0;i<3;i++)
     {
+          var obj ={};
+          var obj2 ={};
           for(j=0;j<=7;j++)
           {
               var chr = String.fromCharCode(65+j);
@@ -28,10 +31,13 @@
                   x: boardPoints[i][chr].x,
                   y: boardPoints[i][chr].y,
                   radius: 10,
-                  fill: '#f5bcbc',
+                  fill: '#00bfff',
                   id:chr+i
                 });
-                 layer.add(circle);
-          }          
-
+                obj[chr]=circle;
+                obj2[chr]='X'
+                layer.add(circle);
+          }
+          boardCircles.push(obj);   
+          boardStatus.push(obj2); 
     }
