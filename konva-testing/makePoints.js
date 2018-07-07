@@ -27,8 +27,8 @@
                 ({
                   x: boardPoints[i][chr].x,
                   y: boardPoints[i][chr].y,
-                  radius: 6,
-                  fill: colorCircle,
+                  radius: 10,
+                  fill: '#f5bcbc',
                   id:chr+i
                 });
                  layer.add(circle);

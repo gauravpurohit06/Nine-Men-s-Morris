@@ -66,12 +66,24 @@
       layer.add(rect);
     }
 
-    function move(element,x,y)
+    function move(element,x,y,nodeID)
     {
+      var ids=element.getAttr('id'); 
+      ids=ids[0]+ids[1];
+      element.setAttr('id',ids+nodeID);
+      console.log(element.id());
     	var anim = new Konva.Animation(function(frame) {
         	element.setX(x);
         	element.setY(y);
     	}, layer);
-
 		anim.start();
+    }
+
+    function IncRad(element)
+    {
+        	element.setAttr('radius',element.getAttr('radius')+5);
+    }
+    function DecRad(element)
+    {
+      element.setAttr('radius',element.getAttr('radius')-5);
     }
