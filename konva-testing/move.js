@@ -4,9 +4,9 @@ var anim = new Konva.Animation(function(frame) {
 
 function move(element,nodeID)
 {
-    console.log(nodeID);
+  console.log(nodeID);
   var ids=element.getAttr('id'); 
-  if(ids.length ===4)boardStatus[ids[3]][ids[2]]='X';
+  if(ids.length == 4)boardStatus[ids[3]][ids[2]]='X';
   console.log(ids);
 
   boardStatus[nodeID[1]][nodeID[0]]=ids[0];
@@ -32,10 +32,14 @@ function DecRadius(element)
 }
 
 function nextChar(c) {
-    return String.fromCharCode(c.charCodeAt(0) + 1);
+    var ch=String.fromCharCode(c.charCodeAt(0) + 1);
+    if(ch>'H')return 'A';
+    return ch;
 }
 function prevChar(c) {
-    return String.fromCharCode(c.charCodeAt(0) - 1);
+    var ch=String.fromCharCode(c.charCodeAt(0) - 1);
+    if(ch <'A')return 'H';
+    return ch;
 }
 
 function ShowValidMoves(nodeID)
@@ -45,11 +49,9 @@ function ShowValidMoves(nodeID)
     var ValPos=[];
     
     var next=nextChar(ch);
-    if(next>'H')next='A';
     if(boardStatus[num][next]=='X')ValPos.push([num,next]);
     
     var prev=prevChar(ch);
-    if(prev<'A')prev='H';
     if(boardStatus[num][prev]=='X')ValPos.push([num,prev]);
     
     var chnum= ch.charCodeAt(0)-'A'.charCodeAt(0);
@@ -87,14 +89,14 @@ function CheckValid(nodeID2,ValPos)
 {
     if((nodeID2[0]==='P') || (nodeID2[0]==='N'))
     {
-        window.alert("InvalidMove");
+        window.alert("Invalid Move");
         return 0;
     }
     for(var i=0;i<ValPos.length;i++)
     {
         if((ValPos[i][0]==nodeID2[1]) && (ValPos[i][1]==nodeID2[0]))return 1; 
     }
-    window.alert("InvalidMove");
+    window.alert("Invalid Move");
     return 0;
 }
 
@@ -105,4 +107,34 @@ function SetDefColor(ValPos)
         boardCircles[ValPos[i][0]][ValPos[i][1]].setAttr('fill','#00bfff');
     }
     anim.start();
+}
+
+function CheckMill(nodeID2)
+{
+    var ch=nodeID2[0]; 
+    var num=nodeID2[1];
+    var chnum= ch.charCodeAt(0)-'A'.charCodeAt(0);
+    if(chnum%2==0)
+    {
+        if((boardStatus[num][ch]==boardStatus[num][nextChar(ch)]) && (boardStatus[num][ch]==boardStatus[num][nextChar(nextChar(ch))]))
+        {
+            return 1;
+        }
+        if((boardStatus[num][ch]==boardStatus[num][prevChar(ch)]) && (boardStatus[num][ch]==boardStatus[num][prevChar(prevChar(ch))]))
+        {
+            return 1;
+        }
+    }
+    else 
+    {
+        if((boardStatus[num][ch]==boardStatus[num][nextChar(ch)]) && (boardStatus[num][ch]==boardStatus[num][prevChar(ch)]))
+        {
+            return 1;
+        }
+        if((boardStatus[0][ch]==boardStatus[1][ch]) && (boardStatus[1][ch]==boardStatus[2][ch]))
+        {
+            return 1;
+        }
+    }
+    return 0;
 }
