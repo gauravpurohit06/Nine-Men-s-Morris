@@ -13,7 +13,7 @@
           fillRadialGradientStartRadius: 0,
           fillRadialGradientEndPoint: 0,
           fillRadialGradientEndRadius: (width+height)/135,
-          fillRadialGradientColorStops: [0, '#000000',1,'#45b3e0'],shadowColor: 'black',
+          fillRadialGradientColorStops: [0, '#DDA0DD' ,1, '#9932CC'],shadowColor: 'black',
           shadowBlur: 0,
           shadowOffset: {x : 5, y : 8},
           shadowOpacity: 0.5
@@ -34,7 +34,7 @@
           fillRadialGradientStartRadius: 0,
           fillRadialGradientEndPoint: 0,
           fillRadialGradientEndRadius: (width+height)/135,
-          fillRadialGradientColorStops: [0, '#d9d9d9', 1, '#DC143C'],
+          fillRadialGradientColorStops: [0, '#FF6666', 1, '#DC143C'],
           shadowColor: 'black',
           shadowBlur: 0,
           shadowOffset: {x : 5, y : 8},
@@ -65,4 +65,4 @@
       stage.add(layer);
     };
 
-    imageObj.src = '/home/gaurav/Nine/konva-testing/assets/chalk.png';
+    imageObj.src = '/NMM/konva-testing/assets/chalk.png';
