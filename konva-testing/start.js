@@ -29,7 +29,7 @@ function CheckEvent2(anim2,ValPos,node){
                 if(cc==2)
                 {
                     stage.off('click.event2');
-                    CheckEvent3();
+                    CheckEvent3(nodeID[0]);
                 }
             }
         }
@@ -44,7 +44,6 @@ function CheckEvent2(anim2,ValPos,node){
 var rn=0;
 var rp=0;
 function CheckEvent3(ch){
-    window.alert("Please Select Opponent Piece");
     stage.on('click.event3', function(e3) {
         var node3= e3.target;
         var isCircle3 = (node3.className === 'Circle'); 
@@ -86,7 +85,7 @@ function CheckEvent1(){
         if (isCircle) 
         {
             var nodeID = node.id();
-            if((nodeID[0]==='P' || nodeID[0]==='N') && j==9)
+            if((nodeID[0]==='P' || nodeID[0]==='N') && ind==9)
             {
                 stage.off('click.event1');
 
@@ -107,7 +106,6 @@ function CheckEvent1(){
                 if(CheckMill(nodeID))
                 {
                     stage.off('click.event1');
-
                     if(pr%2==0)CheckEvent3('N');
                     else CheckEvent3('P');
                 }
