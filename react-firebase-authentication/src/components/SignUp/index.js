@@ -80,37 +80,50 @@ class SignUpForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={username}
-          onChange={event => this.setState(updateByPropertyName('username', event.target.value))}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={passwordOne}
-          onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={passwordTwo}
-          onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
-
-        { error && <p>{error.message}</p> }
-      </form>
+      <div className='row'>
+        <form onSubmit={this.onSubmit} className='col-md-offset-4 col-md-4'>
+          <div className='form-group row'>
+            <label for='inputName'>Full Name</label>
+            <input id='inputName'
+              value={username}
+              onChange={event => this.setState(updateByPropertyName('username', event.target.value))}
+              type='text'
+              placeholder='Full Name'
+              className='form-control'/>
+          </div>
+          <div className='form-group row'>
+            <label for='inputEmail'>Email</label>
+            <input id='inputEmail'
+              value={email}
+              onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
+              type='email'
+              placeholder='Email'
+              className='form-control'/>
+          </div>
+          <div className='form-group row'>
+            <label for='inputPassword1'>Password</label>
+            <input 
+                value={passwordOne}
+                onChange={event => this.setState(updateByPropertyName('passwordOne', event.target.value))}
+                type="password"
+                placeholder="Password"            
+                className='form-control' 
+                id='inputPassword1'/>
+          </div>
+          <div className='form-group row'>
+            <label for='inputPassword2'>Confirm Password</label>
+            <input 
+                value={passwordTwo}
+                onChange={event => this.setState(updateByPropertyName('passwordTwo', event.target.value))}
+                type="password"
+                placeholder="Confirm Password"            
+                className='form-control' 
+                id='inputPassword2'/>
+          </div>
+          <button disabled={isInvalid} type='submit' className='row btn btn-primary'>Sign Up</button>
+          { error && <p>{error.message}</p> }
+        </form>
+      </div>
     );
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-
+import {Form,FormGroup,FormControl,Col,Button} from 'react-bootstrap';
 import { SignUpLink } from '../SignUp';
 import { PasswordForgetLink } from '../PasswordForget';
 import { auth } from '../../firebase';
@@ -10,8 +10,12 @@ const SignInPage = ({ history }) =>
   <div>
     <h1>SignIn</h1>
     <SignInForm history={history} />
-    <PasswordForgetLink />
-    <SignUpLink />
+    <div className='row'>
+      <div className='col-md-offset-4 col-md-4'>
+        <PasswordForgetLink />
+        <SignUpLink />
+      </div>
+    </div>
   </div>
 
 const updateByPropertyName = (propertyName, value) => () => ({
@@ -65,25 +69,32 @@ class SignInForm extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          value={email}
-          onChange={event => this.setState(updateByPropertyName('email', event.target.value))}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setState(updateByPropertyName('password', event.target.value))}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
-
-        { error && <p>{error.message}</p> }
-      </form>
+      <div className='row'>
+        <form onSubmit={this.onSubmit} className='col-md-offset-4 col-md-4'>
+          <div className='form-group row'>
+            <label for='inputEmail'>Email address</label>
+            <input id='inputEmail'
+              type='email' 
+              value={email}
+              onChange={event => this.setState(updateByPropertyName('email', event.target.value))}   
+              className='form-control' 
+              placeholder='Enter email'/>
+            <small id='emailHelp' className='form-text text-muted'>We'll never share your email with anyone else.</small>
+          </div>
+          <div className='form-group row'>
+            <label for='inputPassword1'>Password</label>
+            <input 
+              value={password}
+              onChange={event => this.setState(updateByPropertyName('password', event.target.value))}            
+              type='password'
+              className='form-control' 
+              id='inputPassword1' 
+              placeholder='Password'/>
+          </div>
+          <button disabled={isInvalid} type='submit' className='row btn btn-primary'>Submit</button>
+          { error && <p>{error.message}</p> }
+        </form>
+      </div>
     );
   }
 }
