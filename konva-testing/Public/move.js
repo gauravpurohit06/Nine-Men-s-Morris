@@ -2,10 +2,10 @@ var anim = new Konva.Animation(function(frame) {
     anim.stop();
     }, layer);
 
-function move(element,nodeID)
+function move(element,nodeID,caller)
 {
   console.log(nodeID);
-  var ids=element.getAttr('id'); 
+  var ids = element.getAttr('id'); 
   if(ids.length == 4)boardStatus[ids[3]][ids[2]]='X';
   console.log(ids);
 
@@ -17,8 +17,62 @@ function move(element,nodeID)
   element.setX(x);
   element.setY(y);
   anim.start();
+  var isMill =0;
+  if(caller == 'event1')
+  {
+      if(CheckMill(nodeID))
+      {
+          isMill =1;
+      }
+  }
+  if(caller == 'event2')
+  {
+      DecRadius(element);
+      if(CheckMill(nodeID))
+      {
+          isMill =1;
+      }
+  }
+  if(caller != 'socket')
+  {
+     check=0;
+    var SerData={
+        id : ids,
+        move : nodeID,
+        room : room_num,
+        isMill : isMill
+    };
+    console.log(SerData);
+    socket.emit('my_move',SerData);
+  }
+  if(isMill == 1)
+  {
+        setTimeout(function(){
+            CheckEvent3(ids[0]);
+        },2000);
+  }
 }
 
+function moveout(node3, x, y,caller)
+{
+    var nodeID3 = node3.id();
+    boardStatus[nodeID3[3]][nodeID3[2]]='X';
+    node3.setX(x);
+    node3.setY(y);
+    anim.start();
+    if(caller != 'socket')
+    {
+      var SerData={
+          id : nodeID3,
+          x : x,
+          y : y,
+          room : room_num,
+          isMill : 2
+      };
+      console.log(SerData);
+      socket.emit('my_move',SerData);
+    }
+}
 function IncRadius(element)
 {
     element.setAttr('radius',element.getAttr('radius')+5);

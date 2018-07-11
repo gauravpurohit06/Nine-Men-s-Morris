@@ -65,4 +65,4 @@
       stage.add(layer);
     };
 
-    imageObj.src = '/home/gaurav/Nine/konva-testing/assets/chalk.png';
+    imageObj.src = './chalk.png';
