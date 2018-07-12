@@ -65,4 +65,4 @@
       stage.add(layer);
     };
 
-    imageObj.src = './chalk.png';
+    imageObj.src = './images/chalk.png';
